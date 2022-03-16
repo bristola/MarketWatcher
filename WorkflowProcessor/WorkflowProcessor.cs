@@ -14,13 +14,11 @@ namespace WorkFlowProcessor
     public class WorkflowProcessor : IWorkflowProcessor
     {
         private readonly IConfigurationService _configurationService;
-        private readonly IWorkflowQueries _workflowQueries;
         private readonly IWorkflowService _workflowService;
 
-        public WorkflowProcessor(IConfigurationService configurationService, IWorkflowQueries workflowQueries, IWorkflowService workflowService)
+        public WorkflowProcessor(IConfigurationService configurationService, IWorkflowService workflowService)
         {
             _configurationService = configurationService;
-            _workflowQueries = workflowQueries;
             _workflowService = workflowService;
         }
 
@@ -32,7 +30,7 @@ namespace WorkFlowProcessor
 
             do
             {
-                flows = _workflowQueries.GetWorkflows(page++, limit);
+                flows = _workflowService.GetWorkflows(page++, limit);
                 foreach (var flow in flows)
                 {
                     _workflowService.Execute(flow);

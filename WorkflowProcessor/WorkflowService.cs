@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using System.Text;
 using Data.context;
+using DataAccess.contracts;
 using WorkFlowProcessor.contracts;
 
 namespace WorkFlowProcessor
 {
     public class WorkflowService : IWorkflowService
     {
+        private readonly IWorkflowQueries _workflowQueries;
         private readonly IWorkflowActionProcessorFactory _processorFactory;
 
-        public WorkflowService(IWorkflowActionProcessorFactory processorFactory)
+        public WorkflowService(IWorkflowQueries workflowQueries, IWorkflowActionProcessorFactory processorFactory)
         {
+            _workflowQueries = workflowQueries;
             _processorFactory = processorFactory;
+        }
+
+        public List<Workflow> GetWorkflows(int page, int limit)
+        {
+            return _workflowQueries.GetWorkflows(page, limit);
         }
 
         public void Execute(Workflow workflow)

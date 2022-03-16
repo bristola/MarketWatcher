@@ -19,16 +19,16 @@ namespace WorkflowProcessor.validators
                     return new GreaterThanValidator();
 
                 case WorkflowConstants.ConditionTypes.GreaterThanOrEqual:
-                    return new GreaterThanValidator();
+                    return new GreaterThanOrEqualValidator();
 
                 case WorkflowConstants.ConditionTypes.LessThan:
-                    return new GreaterThanValidator();
+                    return new LessThanValidator();
 
                 case WorkflowConstants.ConditionTypes.LessThanOrEqual:
-                    return new GreaterThanValidator();
+                    return new LessThanOrEqualValidator();
 
                 case WorkflowConstants.ConditionTypes.Equal:
-                    return new GreaterThanValidator();
+                    return new EqualValidator();
 
                 default:
                     throw new Exception($"Invalid condition type: {conditionTypeCode}");

@@ -7,7 +7,7 @@ using WorkflowProcessor.contracts;
 using WorkFlowProcessor.actions;
 using WorkFlowProcessor.contracts;
 
-namespace WorkFlowProcessor
+namespace WorkFlowProcessor.actions
 {
     public class WorkflowActionProcessFactory : IWorkflowActionProcessorFactory
     {
