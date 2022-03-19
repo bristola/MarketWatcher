@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Data.context;
 using DataAccess.contracts;
-using WorkFlowProcessor.contracts;
+using WorkflowProcessor.contracts;
 
-namespace WorkFlowProcessor
+namespace WorkflowProcessor
 {
     public class WorkflowService : IWorkflowService
     {

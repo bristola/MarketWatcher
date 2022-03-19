@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Utilities.services.contracts;
-using WorkFlowProcessor.contracts;
+using WorkflowProcessor.contracts;
 
-namespace WorkFlowProcessor
+namespace WorkflowProcessor
 {
     public class WorkflowProcessor : IWorkflowProcessor
     {

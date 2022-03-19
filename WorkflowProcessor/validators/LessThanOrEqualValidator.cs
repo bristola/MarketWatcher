@@ -14,4 +14,3 @@ namespace WorkflowProcessor.validators
         public bool Validate(decimal leftValue, decimal rightValue) => leftValue <= rightValue;
     }
 }
-}

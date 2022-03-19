@@ -1,9 +1,8 @@
 ﻿using Data.context;
 using DataAccess.contracts;
 using WorkflowProcessor.contracts;
-using WorkFlowProcessor.contracts;
 
-namespace WorkFlowProcessor.actions
+namespace WorkflowProcessor.actions
 {
     public class ConditionalActionProcessor : IWorkflowActionProcessor
     {

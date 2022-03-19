@@ -13,6 +13,7 @@ namespace Data.constants
             public const string Email = "EMAIL";
             public const string Buy = "BUY";
             public const string Sell = "SELL";
+            public const string Timer = "TIMER";
         }
 
         public static class ConditionTypes

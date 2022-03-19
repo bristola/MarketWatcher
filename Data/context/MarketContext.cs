@@ -67,7 +67,8 @@ namespace Data.context
                     new WorkflowActionType { Id = 2, Code = WorkflowConstants.Actions.Sell, Name = "Sell" },
                     new WorkflowActionType { Id = 3, Code = WorkflowConstants.Actions.Email, Name = "Email" },
                     new WorkflowActionType { Id = 4, Code = WorkflowConstants.Actions.None, Name = "Nothing" },
-                    new WorkflowActionType { Id = 5, Code = WorkflowConstants.Actions.Condition, Name = "Condition" }
+                    new WorkflowActionType { Id = 5, Code = WorkflowConstants.Actions.Condition, Name = "Condition" },
+                    new WorkflowActionType { Id = 6, Code = WorkflowConstants.Actions.Timer, Name = "Timer" }
                 );
             });
 

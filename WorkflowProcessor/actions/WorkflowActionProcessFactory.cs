@@ -3,11 +3,10 @@ using DataAccess.contracts;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WorkflowProcessor.actions;
 using WorkflowProcessor.contracts;
-using WorkFlowProcessor.actions;
-using WorkFlowProcessor.contracts;
 
-namespace WorkFlowProcessor.actions
+namespace WorkflowProcessor.actions
 {
     public class WorkflowActionProcessFactory : IWorkflowActionProcessorFactory
     {
@@ -28,6 +27,8 @@ namespace WorkFlowProcessor.actions
             {
                 case WorkflowConstants.Actions.Condition:
                     return new ConditionalActionProcessor(_workflowQueries, _conditionValidatorFactory, _expressionCalculatorFactory);
+                case WorkflowConstants.Actions.Timer:
+                    return new TimerActionProcessor();
                 default:
                     throw new Exception($"Invalid action type: {actionType}");
             }

@@ -1,6 +1,6 @@
 ﻿using Data.context;
 
-namespace WorkFlowProcessor.contracts
+namespace WorkflowProcessor.contracts
 {
     public interface IWorkflowActionProcessor
     {
