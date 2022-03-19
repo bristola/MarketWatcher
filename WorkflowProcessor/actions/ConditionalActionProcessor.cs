@@ -21,13 +21,13 @@ namespace WorkflowProcessor.actions
         {
             var condition = _workflowQueries.GetConditions(action.Id);
 
-            var leftValue = GetData(condition.LeftExpression);
-            var rightValue = GetData(condition.RightExpression);
+            var leftValue = GetValue(condition.LeftExpression);
+            var rightValue = GetValue(condition.RightExpression);
 
             return Validate(condition.ConditionType.Code, leftValue, rightValue);
         }
 
-        private decimal GetData(Expression expression)
+        private decimal GetValue(Expression expression)
         {
             var calculator = _expressionCalculatorFactory.Create(expression.ExpressionType.Code);
 

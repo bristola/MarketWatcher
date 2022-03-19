@@ -20,6 +20,8 @@ namespace Data.context
         public DbSet<ConditionType> ConditionTypes { get; set; }
         public DbSet<Expression> Expressions { get; set; }
         public DbSet<ExpressionType> ExpressionTypes { get; set; }
+        public DbSet<WorkflowStatus> WorkflowStatuses { get; set; }
+        public DbSet<ActionTimer> ActionTimers { get; set; }
 
         public MarketContext() { }
 

@@ -3,6 +3,7 @@
     public class Expression
     {
         public int Id { get; set; }
+        // TODO: Replace One, Two, etc. with a relationship to a new 'Values' table of some sort
         public int ProductOneId { get; set; }
         public virtual Product ProductOne { get; set; }
         public int MarketDataTypeOneId { get; set; }

@@ -29,6 +29,7 @@ namespace WorkflowProcessor
             var actionProcessor = _processorFactory.Create(currentAction.WorkflowActionType.Code);
             var completed = actionProcessor.Process(currentAction);
             // If completed move on to next step
+            // If completed last step, check if current iteration is final iteration, if so change status
         }
     }
 }
