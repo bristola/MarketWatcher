@@ -9,10 +9,7 @@ namespace Data.context
     public class Condition
     {
         public int Id { get; set; }
-        public int LeftExpressionId { get; set; }
-        public virtual Expression LeftExpression { get; set; }
-        public int RightExpressionId { get; set; }
-        public virtual Expression RightExpression { get; set; }
+        public virtual List<ConditionToken> Token { get; set; }
         public int ConditionTypeId { get; set; }
         public virtual ConditionType ConditionType { get; set; }
         public int WorkflowActionId { get; set; }

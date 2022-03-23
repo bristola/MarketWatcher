@@ -25,14 +25,16 @@ namespace Data.constants
             public const string Equal = "EQL";
         }
 
-        public static class ExpressionTypes
+        public static class ConditionTokenTypes
         {
             public const string Addition = "ADD";
             public const string Subtraction = "SUB";
+            public const string Multiplication = "MULT";
             public const string Division = "DIV";
-            public const string Multiply = "MUL";
-            public const string Value = "VAL";
             public const string Constant = "CON";
+            public const string MarketValue = "MVAL";
+            public const string OpenParenthesis = "OPAR";
+            public const string CloseParenthesis = "CPAR";
         }
     }
 }
