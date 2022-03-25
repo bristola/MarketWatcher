@@ -87,14 +87,14 @@ namespace Data.context
             modelBuilder.Entity<ConditionTokenType>(type =>
             {
                 type.HasData(
-                    new ConditionTokenType { Id = 1, Code = WorkflowConstants.ConditionTokenTypes.Addition, Name = "Addition Symbol" },
-                    new ConditionTokenType { Id = 2, Code = WorkflowConstants.ConditionTokenTypes.Subtraction, Name = "Subtraction Symbol" },
-                    new ConditionTokenType { Id = 3, Code = WorkflowConstants.ConditionTokenTypes.Multiplication, Name = "Multiplication Symbol" },
-                    new ConditionTokenType { Id = 4, Code = WorkflowConstants.ConditionTokenTypes.Division, Name = "Division Symbol" },
+                    new ConditionTokenType { Id = 1, Code = WorkflowConstants.ConditionTokenTypes.Addition, Name = "Addition Symbol", ConstantValue = "+" },
+                    new ConditionTokenType { Id = 2, Code = WorkflowConstants.ConditionTokenTypes.Subtraction, Name = "Subtraction Symbol", ConstantValue = "-" },
+                    new ConditionTokenType { Id = 3, Code = WorkflowConstants.ConditionTokenTypes.Multiplication, Name = "Multiplication Symbol", ConstantValue = "*" },
+                    new ConditionTokenType { Id = 4, Code = WorkflowConstants.ConditionTokenTypes.Division, Name = "Division Symbol", ConstantValue = "/" },
                     new ConditionTokenType { Id = 5, Code = WorkflowConstants.ConditionTokenTypes.Constant, Name = "Constant Value" },
                     new ConditionTokenType { Id = 6, Code = WorkflowConstants.ConditionTokenTypes.MarketValue, Name = "Variable Market Value" },
-                    new ConditionTokenType { Id = 7, Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis, Name = "Open Parenthesis Symbol" },
-                    new ConditionTokenType { Id = 7, Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis, Name = "Close Parenthesis Symbol" }
+                    new ConditionTokenType { Id = 7, Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis, Name = "Open Parenthesis Symbol", ConstantValue = "(" },
+                    new ConditionTokenType { Id = 7, Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis, Name = "Close Parenthesis Symbol", ConstantValue = ")" }
                 );
             });
         }

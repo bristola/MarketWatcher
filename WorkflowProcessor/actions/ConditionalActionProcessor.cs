@@ -8,31 +8,28 @@ namespace WorkflowProcessor.actions
     {
         private readonly IWorkflowQueries _workflowQueries;
         private readonly IConditionValidatorFactory _conditionValidatorFactory;
-        private readonly IExpressionCalculatorFactory _expressionCalculatorFactory;
+        private readonly IExpressionCalculator _expressionCalculator;
 
-        public ConditionalActionProcessor(IWorkflowQueries workflowQueries, IConditionValidatorFactory conditionValidatorFactory, IExpressionCalculatorFactory expressionCalculatorFactory)
+        public ConditionalActionProcessor(IWorkflowQueries workflowQueries, IConditionValidatorFactory conditionValidatorFactory, IExpressionCalculator expressionCalculator)
         {
             _workflowQueries = workflowQueries;
             _conditionValidatorFactory = conditionValidatorFactory;
-            _expressionCalculatorFactory = expressionCalculatorFactory;
+            _expressionCalculator = expressionCalculator;
         }
 
         public bool Process(WorkflowAction action)
         {
             var condition = _workflowQueries.GetConditions(action.Id);
 
-            var leftValue = GetValue(condition.LeftExpression);
-            var rightValue = GetValue(condition.RightExpression);
+            var leftValue = _expressionCalculator.Calculate(GetLeftTokens(condition));
+            var rightValue = _expressionCalculator.Calculate(GetRightTokens(condition));
 
             return Validate(condition.ConditionType.Code, leftValue, rightValue);
         }
 
-        private decimal GetValue(Expression expression)
-        {
-            var calculator = _expressionCalculatorFactory.Create(expression.ExpressionType.Code);
+        private List<ConditionToken> GetLeftTokens(Condition condition) => condition.Tokens.Where(t => t.IsLeftExpression).ToList();
 
-            return calculator.Calculate(expression);
-        }
+        private List<ConditionToken> GetRightTokens(Condition condition) => condition.Tokens.Where(t => t.IsRightExpression).ToList();
 
         private bool Validate(string conditionType, decimal leftValue, decimal rightValue)
         {

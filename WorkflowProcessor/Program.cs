@@ -30,7 +30,7 @@ namespace WorkflowProcessor
                 .AddScoped<IWorkflowService, WorkflowService>()
                 .AddScoped<IWorkflowActionProcessorFactory, WorkflowActionProcessFactory>()
                 .AddScoped<IConditionValidatorFactory, ConditionValidatorFactory>()
-                .AddScoped<IExpressionCalculatorFactory, ExpressionCalculatorFactory>()
+                .AddScoped<IExpressionCalculator, ExpressionCalculator>()
                 .AddSingleton<IConfigurationService, ConfigurationService>()
                 .AddDbContext<MarketContext>(options => options
                     .UseLazyLoadingProxies()

@@ -34,6 +34,12 @@ namespace DataAccess
         {
             return _context.Conditions
                 .Include(c => c.ConditionType)
+                .Include(c => c.Tokens)
+                .ThenInclude(c => c.ConditionTokenType)
+                .Include(c => c.Tokens)
+                .ThenInclude(c => c.Product)
+                .Include(c => c.Tokens)
+                .ThenInclude(c => c.MarketDataType)
                 .AsNoTracking()
                 .Where(c => c.WorkflowActionId == workflowActionId)
                 .Single();
