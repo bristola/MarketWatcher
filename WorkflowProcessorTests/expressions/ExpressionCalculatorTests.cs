@@ -86,7 +86,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
+                        Code = WorkflowConstants.ConditionTokenTypes.Subtraction,
                         ConstantValue = "-"
                     }
                 },
@@ -125,7 +125,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
+                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication,
                         ConstantValue = "*"
                     }
                 },
@@ -164,7 +164,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
+                        Code = WorkflowConstants.ConditionTokenTypes.Division,
                         ConstantValue = "/"
                     }
                 },
@@ -258,7 +258,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
+                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication,
                         ConstantValue = "*"
                     }
                 },
@@ -277,6 +277,132 @@ namespace WorkflowProcessorTests.expressions
 
             // Assert
             Assert.AreEqual(28, result);
+        }
+
+        [Test]
+        public void SimpleParenthesisTest()
+        {
+            // Arrange
+            var input = new List<ConditionToken>
+            {
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis,
+                        ConstantValue = "("
+                    }
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.Constant
+                    },
+                    ConstantValue = 13
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
+                        ConstantValue = "+"
+                    }
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.Constant
+                    },
+                    ConstantValue = 6
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis,
+                        ConstantValue = ")"
+                    }
+                }
+            };
+
+            // Act
+            var result = expressionCalculator.Calculate(input);
+
+            // Assert
+            Assert.AreEqual(19, result);
+        }
+
+        [Test]
+        public void ComplexParenthesisTest()
+        {
+            // Arrange
+            var input = new List<ConditionToken>
+            {
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.Constant
+                    },
+                    ConstantValue = 3
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication,
+                        ConstantValue = "*"
+                    }
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis,
+                        ConstantValue = "("
+                    }
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.Constant
+                    },
+                    ConstantValue = 13
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
+                        ConstantValue = "+"
+                    }
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.Constant
+                    },
+                    ConstantValue = 6
+                },
+                new ConditionToken
+                {
+                    ConditionTokenType = new ConditionTokenType
+                    {
+                        Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis,
+                        ConstantValue = ")"
+                    }
+                }
+            };
+
+            // Act
+            var result = expressionCalculator.Calculate(input);
+
+            // Assert
+            Assert.AreEqual(57, result);
         }
     }
 }
