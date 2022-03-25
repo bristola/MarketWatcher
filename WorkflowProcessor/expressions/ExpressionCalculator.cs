@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkflowProcessor.contracts;
+using TokenTypes = Data.constants.WorkflowConstants.ConditionTokenTypes;
 
 namespace WorkflowProcessor.expressions
 {
@@ -21,50 +22,37 @@ namespace WorkflowProcessor.expressions
 
         public decimal Calculate(List<ConditionToken> tokens)
         {
+            int currentIndex = -1;
+
             // Parenthesis
-            var currentIndex = tokens.FindIndex(t => t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.OpenParenthesis);
-            while (currentIndex >= 0)
+            while ((currentIndex = FindTokenIndex(tokens, TokenTypes.OpenParenthesis)) >= 0)
             {
-                var closeIndex = tokens.FindIndex(t => t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.CloseParenthesis);
+                var closeIndex = tokens.FindIndex(t => t.ConditionTokenType.Code == TokenTypes.CloseParenthesis);
                 var parenthesisValue = Calculate(tokens.GetRange(currentIndex + 1, closeIndex - currentIndex - 1));
                 tokens.RemoveRange(currentIndex, closeIndex - currentIndex + 1);
                 tokens.Insert(currentIndex, GetConstantValueToken(parenthesisValue));
-                currentIndex = tokens.FindIndex(t => t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.OpenParenthesis);
             }
 
             // Multiplication and division
-            currentIndex = tokens.FindIndex(t =>
-                t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Multiplication ||
-                t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Division);
-            while (currentIndex >= 0)
+            while ((currentIndex = FindTokenIndex(tokens, TokenTypes.Multiplication, TokenTypes.Division)) >= 0)
             {
                 var val1 = GetValue(tokens.ElementAt(currentIndex - 1));
                 var val2 = GetValue(tokens.ElementAt(currentIndex + 1));
                 var op = tokens.ElementAt(currentIndex);
-                var res = op.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Multiplication ? val1 * val2 : val1 / val2;
+                var res = op.ConditionTokenType.Code == TokenTypes.Multiplication ? val1 * val2 : val1 / val2;
                 tokens.RemoveRange(currentIndex - 1, 3);
                 tokens.Insert(currentIndex - 1, GetConstantValueToken(res));
-                currentIndex = tokens.FindIndex(t =>
-                    t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Multiplication ||
-                    t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Division);
             }
 
             // Addition and subtraction
-            // Multiplication and division
-            currentIndex = tokens.FindIndex(t =>
-                t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Addition ||
-                t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Subtraction);
-            while (currentIndex >= 0)
+            while ((currentIndex = FindTokenIndex(tokens, TokenTypes.Addition, TokenTypes.Subtraction)) >= 0)
             {
                 var val1 = GetValue(tokens.ElementAt(currentIndex - 1));
                 var val2 = GetValue(tokens.ElementAt(currentIndex + 1));
                 var op = tokens.ElementAt(currentIndex);
-                var res = op.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Addition ? val1 + val2 : val1 - val2;
+                var res = op.ConditionTokenType.Code == TokenTypes.Addition ? val1 + val2 : val1 - val2;
                 tokens.RemoveRange(currentIndex - 1, 3);
                 tokens.Insert(currentIndex - 1, GetConstantValueToken(res));
-                currentIndex = tokens.FindIndex(t =>
-                    t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Addition ||
-                    t.ConditionTokenType.Code == WorkflowConstants.ConditionTokenTypes.Subtraction);
             }
 
             var result = tokens.First().ConstantValue;
@@ -77,6 +65,9 @@ namespace WorkflowProcessor.expressions
             return (decimal) result;
         }
 
+        private int FindTokenIndex(List<ConditionToken> tokens, params string[] codes) =>
+            tokens.FindIndex(t => codes.Contains(t.ConditionTokenType.Code));
+
         private ConditionToken GetConstantValueToken(decimal? value)
         {
             return new ConditionToken
@@ -84,7 +75,7 @@ namespace WorkflowProcessor.expressions
                 ConstantValue = value,
                 ConditionTokenType = new ConditionTokenType
                 {
-                    Code = WorkflowConstants.ConditionTokenTypes.Constant
+                    Code = TokenTypes.Constant
                 }
             };
         }
@@ -93,9 +84,9 @@ namespace WorkflowProcessor.expressions
         {
             switch (token.ConditionTokenType.Code)
             {
-                case WorkflowConstants.ConditionTokenTypes.Constant:
+                case TokenTypes.Constant:
                     return token.ConstantValue;
-                case WorkflowConstants.ConditionTokenTypes.MarketValue:
+                case TokenTypes.MarketValue:
                     return _workflowQueries.GetMarketData(token.Product.Code, token.MarketDataType.Code, token.MarketDataType.ExpirationMinutes);
                 default:
                     throw new NotImplementedException();
