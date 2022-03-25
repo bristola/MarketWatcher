@@ -47,8 +47,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
-                        ConstantValue = "+"
+                        Code = WorkflowConstants.ConditionTokenTypes.Addition
                     }
                 },
                 new ConditionToken
@@ -86,8 +85,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Subtraction,
-                        ConstantValue = "-"
+                        Code = WorkflowConstants.ConditionTokenTypes.Subtraction
                     }
                 },
                 new ConditionToken
@@ -125,8 +123,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication,
-                        ConstantValue = "*"
+                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication
                     }
                 },
                 new ConditionToken
@@ -164,8 +161,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Division,
-                        ConstantValue = "/"
+                        Code = WorkflowConstants.ConditionTokenTypes.Division
                     }
                 },
                 new ConditionToken
@@ -211,8 +207,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
-                        ConstantValue = "+"
+                        Code = WorkflowConstants.ConditionTokenTypes.Addition
                     }
                 },
                 new ConditionToken
@@ -258,8 +253,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication,
-                        ConstantValue = "*"
+                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication
                     }
                 },
                 new ConditionToken
@@ -289,8 +283,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis,
-                        ConstantValue = "("
+                        Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis
                     }
                 },
                 new ConditionToken
@@ -305,8 +298,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
-                        ConstantValue = "+"
+                        Code = WorkflowConstants.ConditionTokenTypes.Addition
                     }
                 },
                 new ConditionToken
@@ -321,8 +313,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis,
-                        ConstantValue = ")"
+                        Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis
                     }
                 }
             };
@@ -352,16 +343,14 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication,
-                        ConstantValue = "*"
+                        Code = WorkflowConstants.ConditionTokenTypes.Multiplication
                     }
                 },
                 new ConditionToken
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis,
-                        ConstantValue = "("
+                        Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis
                     }
                 },
                 new ConditionToken
@@ -376,8 +365,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.Addition,
-                        ConstantValue = "+"
+                        Code = WorkflowConstants.ConditionTokenTypes.Addition
                     }
                 },
                 new ConditionToken
@@ -392,8 +380,7 @@ namespace WorkflowProcessorTests.expressions
                 {
                     ConditionTokenType = new ConditionTokenType
                     {
-                        Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis,
-                        ConstantValue = ")"
+                        Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis
                     }
                 }
             };
