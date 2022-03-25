@@ -68,9 +68,7 @@ namespace WorkflowProcessor.expressions
         private int FindTokenIndex(List<ConditionToken> tokens, params string[] codes) =>
             tokens.FindIndex(t => codes.Contains(t.ConditionTokenType.Code));
 
-        private ConditionToken GetConstantValueToken(decimal? value)
-        {
-            return new ConditionToken
+        private ConditionToken GetConstantValueToken(decimal? value) => new ConditionToken
             {
                 ConstantValue = value,
                 ConditionTokenType = new ConditionTokenType
@@ -78,7 +76,6 @@ namespace WorkflowProcessor.expressions
                     Code = TokenTypes.Constant
                 }
             };
-        }
 
         private decimal? GetValue(ConditionToken token)
         {
@@ -87,7 +84,7 @@ namespace WorkflowProcessor.expressions
                 case TokenTypes.Constant:
                     return token.ConstantValue;
                 case TokenTypes.MarketValue:
-                    return _workflowQueries.GetMarketData(token.Product.Code, token.MarketDataType.Code, token.MarketDataType.ExpirationMinutes);
+                    return _workflowQueries.GetMarketData(token.Product?.Code ?? string.Empty, token.MarketDataType?.Code ?? string.Empty, token.MarketDataType?.ExpirationMinutes ?? 5);
                 default:
                     throw new NotImplementedException();
             }
