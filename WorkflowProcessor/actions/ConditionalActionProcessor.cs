@@ -29,7 +29,7 @@ namespace WorkflowProcessor.actions
 
         private List<ConditionToken> GetLeftTokens(Condition condition) => condition.Tokens.Where(t => t.IsLeftExpression).ToList();
 
-        private List<ConditionToken> GetRightTokens(Condition condition) => condition.Tokens.Where(t => t.IsRightExpression).ToList();
+        private List<ConditionToken> GetRightTokens(Condition condition) => condition.Tokens.Where(t => !t.IsLeftExpression).ToList();
 
         private bool Validate(string conditionType, decimal leftValue, decimal rightValue)
         {

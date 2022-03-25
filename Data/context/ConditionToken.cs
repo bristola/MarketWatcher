@@ -4,7 +4,6 @@
     {
         public int Id { get; set; }
         public bool IsLeftExpression { get; set; }
-        public bool IsRightExpression { get; set; }
         public int ConditionTokenTypeId { get; set; }
         public virtual ConditionTokenType ConditionTokenType { get; set; }
         public decimal? ConstantValue { get; set; }
