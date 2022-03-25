@@ -90,7 +90,7 @@ namespace WorkflowProcessor.expressions
                 case WorkflowConstants.ConditionTokenTypes.Constant:
                     return token.ConstantValue;
                 case WorkflowConstants.ConditionTokenTypes.MarketValue:
-                    return _workflowQueries.GetMarketData(token.Product.Code, token.MarketDataType.Code, 15);
+                    return _workflowQueries.GetMarketData(token.Product.Code, token.MarketDataType.Code, token.MarketDataType.ExpirationMinutes);
                 default:
                     throw new NotImplementedException();
             }
