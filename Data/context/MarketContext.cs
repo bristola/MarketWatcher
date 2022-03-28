@@ -18,8 +18,8 @@ namespace Data.context
         public DbSet<WorkflowActionType> WorkflowActionTypes { get; set; }
         public DbSet<Condition> Conditions { get; set; }
         public DbSet<ConditionType> ConditionTypes { get; set; }
-        public DbSet<Expression> Expressions { get; set; }
-        public DbSet<ExpressionType> ExpressionTypes { get; set; }
+        public DbSet<ConditionToken> ConditionTokens { get; set; }
+        public DbSet<ConditionTokenType> ConditionTokenTypes { get; set; }
         public DbSet<WorkflowStatus> WorkflowStatuses { get; set; }
         public DbSet<ActionTimer> ActionTimers { get; set; }
 
@@ -81,6 +81,20 @@ namespace Data.context
                     new ConditionType { Id = 3, Code = WorkflowConstants.ConditionTypes.LessThan, Name = "Less Than" },
                     new ConditionType { Id = 4, Code = WorkflowConstants.ConditionTypes.LessThanOrEqual, Name = "Less Than or Equal To" },
                     new ConditionType { Id = 5, Code = WorkflowConstants.ConditionTypes.Equal, Name = "Equal To"}
+                );
+            });
+
+            modelBuilder.Entity<ConditionTokenType>(type =>
+            {
+                type.HasData(
+                    new ConditionTokenType { Id = 1, Code = WorkflowConstants.ConditionTokenTypes.Addition, Name = "Addition Symbol" },
+                    new ConditionTokenType { Id = 2, Code = WorkflowConstants.ConditionTokenTypes.Subtraction, Name = "Subtraction Symbol" },
+                    new ConditionTokenType { Id = 3, Code = WorkflowConstants.ConditionTokenTypes.Multiplication, Name = "Multiplication Symbol" },
+                    new ConditionTokenType { Id = 4, Code = WorkflowConstants.ConditionTokenTypes.Division, Name = "Division Symbol" },
+                    new ConditionTokenType { Id = 5, Code = WorkflowConstants.ConditionTokenTypes.Constant, Name = "Constant Value" },
+                    new ConditionTokenType { Id = 6, Code = WorkflowConstants.ConditionTokenTypes.MarketValue, Name = "Variable Market Value" },
+                    new ConditionTokenType { Id = 7, Code = WorkflowConstants.ConditionTokenTypes.OpenParenthesis, Name = "Open Parenthesis Symbol" },
+                    new ConditionTokenType { Id = 7, Code = WorkflowConstants.ConditionTokenTypes.CloseParenthesis, Name = "Close Parenthesis Symbol" }
                 );
             });
         }

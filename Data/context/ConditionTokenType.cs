@@ -1,6 +1,6 @@
 ﻿namespace Data.context
 {
-    public class ExpressionType
+    public class ConditionTokenType
     {
         public int Id { get; set; }
         public string Name { get; set; }

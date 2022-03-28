@@ -9,6 +9,6 @@ namespace WorkflowProcessor.contracts
 {
     public interface IExpressionCalculator
     {
-        decimal Calculate(Expression expression);
+        decimal Calculate(List<ConditionToken> tokens);
     }
 }
