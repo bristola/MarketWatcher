@@ -1,6 +1,11 @@
+using AutoMapper;
+using DataAccess;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 builder.Services.AddControllers();
 

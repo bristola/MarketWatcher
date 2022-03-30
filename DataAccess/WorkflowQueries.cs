@@ -1,25 +1,30 @@
 ﻿using Data.context;
+using Data.data;
 using DataAccess.contracts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoMapper.QueryableExtensions;
+using AutoMapper;
 
 namespace DataAccess
 {
     public class WorkflowQueries : IWorkflowQueries
     {
         private readonly MarketContext _context;
+        private readonly IMapper _mapper;
 
-        public WorkflowQueries(MarketContext context)
+        public WorkflowQueries(MarketContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public List<Workflow> GetWorkflows(int page, int limit)
+        public List<WorkflowDTO> GetWorkflows(int page, int limit)
         {
-            return _context.Workflows
+            var workflows = _context.Workflows
                 .Include(w => w.CurrentWorkflowAction)
                 .ThenInclude(w => w.WorkflowActionType)
                 .Include(w => w.CurrentWorkflowAction)
@@ -28,11 +33,13 @@ namespace DataAccess
                 .Skip(page * limit)
                 .Take(limit)
                 .ToList();
+
+            return _mapper.Map<List<Workflow>, List<WorkflowDTO>>(workflows);
         }
 
-        public Condition GetConditions(int workflowActionId)
+        public ConditionDTO GetConditions(int workflowActionId)
         {
-            return _context.Conditions
+            var condition = _context.Conditions
                 .Include(c => c.ConditionType)
                 .Include(c => c.Tokens)
                 .ThenInclude(c => c.ConditionTokenType)
@@ -43,6 +50,8 @@ namespace DataAccess
                 .AsNoTracking()
                 .Where(c => c.WorkflowActionId == workflowActionId)
                 .Single();
+
+            return _mapper.Map<ConditionDTO>(condition);
         }
 
         public decimal GetMarketData(string productTypeCode, string marketDataTypeCode, int minutesAgo)
