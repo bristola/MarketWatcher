@@ -1,9 +1,10 @@
 ﻿using Data.context;
+using Data.data;
 
 namespace WorkflowProcessor.contracts
 {
     public interface IWorkflowActionProcessor
     {
-        bool Process(WorkflowAction action);
+        bool Process(WorkflowActionDTO action);
     }
 }

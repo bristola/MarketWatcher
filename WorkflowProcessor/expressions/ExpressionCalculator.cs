@@ -1,5 +1,6 @@
 ﻿using Data.constants;
 using Data.context;
+using Data.data;
 using DataAccess.contracts;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace WorkflowProcessor.expressions
             _workflowQueries = workflowQueries;
         }
 
-        public decimal Calculate(List<ConditionToken> tokens)
+        public decimal Calculate(List<ConditionTokenDTO> tokens)
         {
             int currentIndex = -1;
 
@@ -65,19 +66,19 @@ namespace WorkflowProcessor.expressions
             return (decimal) result;
         }
 
-        private int FindTokenIndex(List<ConditionToken> tokens, params string[] codes) =>
+        private int FindTokenIndex(List<ConditionTokenDTO> tokens, params string[] codes) =>
             tokens.FindIndex(t => codes.Contains(t.ConditionTokenType.Code));
 
-        private ConditionToken GetConstantValueToken(decimal? value) => new ConditionToken
+        private ConditionTokenDTO GetConstantValueToken(decimal? value) => new ConditionTokenDTO
             {
                 ConstantValue = value,
-                ConditionTokenType = new ConditionTokenType
+                ConditionTokenType = new ConditionTokenTypeDTO
                 {
                     Code = TokenTypes.Constant
                 }
             };
 
-        private decimal? GetValue(ConditionToken token)
+        private decimal? GetValue(ConditionTokenDTO token)
         {
             switch (token.ConditionTokenType.Code)
             {

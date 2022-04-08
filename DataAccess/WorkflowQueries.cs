@@ -34,7 +34,7 @@ namespace DataAccess
                 .Take(limit)
                 .ToList();
 
-            return _mapper.Map<List<Workflow>, List<WorkflowDTO>>(workflows);
+            return _mapper.Map<List<WorkflowDTO>>(workflows);
         }
 
         public ConditionDTO GetConditions(int workflowActionId)

@@ -1,4 +1,5 @@
 ﻿using Data.context;
+using Data.data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace WorkflowProcessor.contracts
 {
     public interface IExpressionCalculator
     {
-        decimal Calculate(List<ConditionToken> tokens);
+        decimal Calculate(List<ConditionTokenDTO> tokens);
     }
 }

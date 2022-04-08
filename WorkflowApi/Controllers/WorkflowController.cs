@@ -6,7 +6,7 @@ namespace WorkflowApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WorkflowController
+    public class WorkflowController : ControllerBase
     {
         private readonly IWorkflowQueries _workflowQueries;
         private readonly IWorkflowCommands _workflowCommands;
@@ -24,9 +24,10 @@ namespace WorkflowApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveWorkflow()
+        public ActionResult SaveWorkflow(WorkflowDTO workflow)
         {
-
+            _workflowCommands.SaveWorkflow(workflow);
+            return Ok(true);
         }
     }
 }

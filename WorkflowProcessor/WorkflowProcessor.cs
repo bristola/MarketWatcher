@@ -1,5 +1,6 @@
 ﻿using Data.constants;
 using Data.context;
+using Data.data;
 using DataAccess.contracts;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace WorkflowProcessor
         {
             var page = 0;
             var limit = 10;
-            List<Workflow> flows = new List<Workflow>();
+            List<WorkflowDTO> flows = new List<WorkflowDTO>();
 
             do
             {

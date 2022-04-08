@@ -1,4 +1,5 @@
 ﻿using Data.context;
+using Data.data;
 using DataAccess.contracts;
 using WorkflowProcessor.contracts;
 
@@ -17,19 +18,15 @@ namespace WorkflowProcessor.actions
             _expressionCalculator = expressionCalculator;
         }
 
-        public bool Process(WorkflowAction action)
+        public bool Process(WorkflowActionDTO action)
         {
-            var condition = _workflowQueries.GetConditions(action.Id);
+            var condition = _workflowQueries.GetConditions(action.WorkflowActionId);
 
-            var leftValue = _expressionCalculator.Calculate(GetLeftTokens(condition));
-            var rightValue = _expressionCalculator.Calculate(GetRightTokens(condition));
+            var leftValue = _expressionCalculator.Calculate(condition.LeftTokens);
+            var rightValue = _expressionCalculator.Calculate(condition.RightTokens);
 
             return Validate(condition.ConditionType.Code, leftValue, rightValue);
         }
-
-        private List<ConditionToken> GetLeftTokens(Condition condition) => condition.Tokens.Where(t => t.IsLeftExpression).ToList();
-
-        private List<ConditionToken> GetRightTokens(Condition condition) => condition.Tokens.Where(t => !t.IsLeftExpression).ToList();
 
         private bool Validate(string conditionType, decimal leftValue, decimal rightValue)
         {

@@ -20,7 +20,7 @@ namespace DataAccess
 
         public void SaveWorkflow(WorkflowDTO workflow)
         {
-            throw new NotImplementedException();
+            var newWorkflow = new Workflow();
         }
     }
 }

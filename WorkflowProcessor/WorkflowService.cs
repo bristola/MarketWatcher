@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Data.context;
+using Data.data;
 using DataAccess.contracts;
 using WorkflowProcessor.contracts;
 
@@ -18,12 +19,12 @@ namespace WorkflowProcessor
             _processorFactory = processorFactory;
         }
 
-        public List<Workflow> GetWorkflows(int page, int limit)
+        public List<WorkflowDTO> GetWorkflows(int page, int limit)
         {
             return _workflowQueries.GetWorkflows(page, limit);
         }
 
-        public void Execute(Workflow workflow)
+        public void Execute(WorkflowDTO workflow)
         {
             var currentAction = workflow.CurrentWorkflowAction;
             var actionProcessor = _processorFactory.Create(currentAction.WorkflowActionType.Code);

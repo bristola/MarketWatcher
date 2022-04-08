@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowProcessor", "Workfl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowProcessorTests", "WorkflowProcessorTests\WorkflowProcessorTests.csproj", "{FE1BD5A3-5025-47F8-8871-A1E8BEB0E6A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowApi", "WorkflowApi\WorkflowApi.csproj", "{2C02474D-B84A-4E18-AA20-94E0CC8DAA70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowApi", "WorkflowApi\WorkflowApi.csproj", "{2C02474D-B84A-4E18-AA20-94E0CC8DAA70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTests", "DataAccessTests\DataAccessTests.csproj", "{37E9F00B-75ED-4E15-A320-B90F115A47B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{2C02474D-B84A-4E18-AA20-94E0CC8DAA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C02474D-B84A-4E18-AA20-94E0CC8DAA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C02474D-B84A-4E18-AA20-94E0CC8DAA70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E9F00B-75ED-4E15-A320-B90F115A47B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E9F00B-75ED-4E15-A320-B90F115A47B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E9F00B-75ED-4E15-A320-B90F115A47B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E9F00B-75ED-4E15-A320-B90F115A47B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
