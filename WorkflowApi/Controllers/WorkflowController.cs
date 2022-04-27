@@ -5,28 +5,34 @@ using Microsoft.AspNetCore.Mvc;
 namespace WorkflowApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("workflow")]
     public class WorkflowController : ControllerBase
     {
-        private readonly IWorkflowQueries _workflowQueries;
-        private readonly IWorkflowCommands _workflowCommands;
+        private readonly IWorkflowDataService _workflowDataService;
 
-        public WorkflowController(IWorkflowQueries workflowQueries, IWorkflowCommands workflowCommands)
+        public WorkflowController(IWorkflowDataService workflowDataService)
         {
-            _workflowQueries = workflowQueries;
-            _workflowCommands = workflowCommands;
+            _workflowDataService = workflowDataService;
         }
 
         [HttpGet]
-        public List<WorkflowDTO> GetWorkflows()
+        public List<WorkflowDTO> GetWorkflows([FromQuery] int page = 0, [FromQuery] int limit = 10)
         {
-            return _workflowQueries.GetWorkflows(0, 10);
+            return _workflowDataService.GetWorkflows(page, limit);
         }
 
         [HttpPost]
         public ActionResult SaveWorkflow(WorkflowDTO workflow)
         {
-            _workflowCommands.SaveWorkflow(workflow);
+            _workflowDataService.SaveWorkflow(workflow);
+            return Ok(true);
+        }
+
+        [HttpPost]
+        [Route("condition")]
+        public ActionResult SaveConditionWorkflowAction(ConditionWorkflowActionDTO conditionWorkflowAction)
+        {
+            _workflowDataService.SaveConditionWorkflowAction(conditionWorkflowAction);
             return Ok(true);
         }
     }

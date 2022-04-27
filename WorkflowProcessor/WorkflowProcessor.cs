@@ -27,7 +27,7 @@ namespace WorkflowProcessor
         {
             var page = 0;
             var limit = 10;
-            List<WorkflowDTO> flows = new List<WorkflowDTO>();
+            List<WorkflowDTO> flows = new();
 
             do
             {

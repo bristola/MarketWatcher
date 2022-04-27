@@ -10,5 +10,7 @@ namespace DataAccess.contracts
     public interface IWorkflowCommands
     {
         void SaveWorkflow(WorkflowDTO workflow);
+        int AddWorkflowAction(int workflowId, WorkflowActionDTO workflowAction);
+        void SaveConditionWorkflowAction(int workflowActionId, ConditionDTO condition);
     }
 }

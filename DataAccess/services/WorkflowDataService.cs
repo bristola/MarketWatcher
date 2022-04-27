@@ -37,5 +37,11 @@ namespace DataAccess.services
         {
             _commands.SaveWorkflow(workflow);
         }
+
+        public void SaveConditionWorkflowAction(ConditionWorkflowActionDTO conditionWorkflowAction)
+        {
+            var workflowActionId = _commands.AddWorkflowAction(conditionWorkflowAction.WorkflowId, conditionWorkflowAction.WorkflowAction);
+            _commands.SaveConditionWorkflowAction(workflowActionId, conditionWorkflowAction.Condition);
+        }
     }
 }

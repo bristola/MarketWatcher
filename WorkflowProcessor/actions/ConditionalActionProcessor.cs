@@ -7,20 +7,20 @@ namespace WorkflowProcessor.actions
 {
     public class ConditionalActionProcessor : IWorkflowActionProcessor
     {
-        private readonly IWorkflowQueries _workflowQueries;
+        private readonly IWorkflowDataService _workflowDataService;
         private readonly IConditionValidatorFactory _conditionValidatorFactory;
         private readonly IExpressionCalculator _expressionCalculator;
 
-        public ConditionalActionProcessor(IWorkflowQueries workflowQueries, IConditionValidatorFactory conditionValidatorFactory, IExpressionCalculator expressionCalculator)
+        public ConditionalActionProcessor(IWorkflowDataService workflowDataService, IConditionValidatorFactory conditionValidatorFactory, IExpressionCalculator expressionCalculator)
         {
-            _workflowQueries = workflowQueries;
+            _workflowDataService = workflowDataService;
             _conditionValidatorFactory = conditionValidatorFactory;
             _expressionCalculator = expressionCalculator;
         }
 
         public bool Process(WorkflowActionDTO action)
         {
-            var condition = _workflowQueries.GetConditions(action.WorkflowActionId);
+            var condition = _workflowDataService.GetConditions(action.WorkflowActionId);
 
             var leftValue = _expressionCalculator.Calculate(condition.LeftTokens);
             var rightValue = _expressionCalculator.Calculate(condition.RightTokens);

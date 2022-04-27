@@ -13,5 +13,6 @@ namespace DataAccess.contracts
         ConditionDTO GetConditions(int workflowActionId);
         decimal GetMarketData(string productTypeCode, string marketTypeCode, int minutesAgo);
         void SaveWorkflow(WorkflowDTO workflow);
+        void SaveConditionWorkflowAction(ConditionWorkflowActionDTO conditionWorkflowAction);
     }
 }

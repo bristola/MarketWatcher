@@ -2,6 +2,7 @@
 using Data.context;
 using DataAccess;
 using DataAccess.contracts;
+using DataAccess.services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Nito.AsyncEx;
@@ -27,6 +28,9 @@ namespace WorkflowProcessor
                 .AddScoped<IMarketDataCommands, MarketDataCommands>()
                 .AddScoped<IMarketDataQueries, MarketDataQueries>()
                 .AddScoped<IWorkflowQueries, WorkflowQueries>()
+                .AddScoped<IWorkflowCommands, WorkflowCommands>()
+                .AddScoped<IWorkflowDataService, WorkflowDataService>()
+                .AddScoped<IMarketDataService, MarketDataService>()
                 .AddScoped<IWorkflowService, WorkflowService>()
                 .AddScoped<IWorkflowActionProcessorFactory, WorkflowActionProcessFactory>()
                 .AddScoped<IConditionValidatorFactory, ConditionValidatorFactory>()

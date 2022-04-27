@@ -10,18 +10,18 @@ namespace WorkflowProcessor
 {
     public class WorkflowService : IWorkflowService
     {
-        private readonly IWorkflowQueries _workflowQueries;
+        private readonly IWorkflowDataService _workflowDataService;
         private readonly IWorkflowActionProcessorFactory _processorFactory;
 
-        public WorkflowService(IWorkflowQueries workflowQueries, IWorkflowActionProcessorFactory processorFactory)
+        public WorkflowService(IWorkflowDataService workflowDataService, IWorkflowActionProcessorFactory processorFactory)
         {
-            _workflowQueries = workflowQueries;
+            _workflowDataService = workflowDataService;
             _processorFactory = processorFactory;
         }
 
         public List<WorkflowDTO> GetWorkflows(int page, int limit)
         {
-            return _workflowQueries.GetWorkflows(page, limit);
+            return _workflowDataService.GetWorkflows(page, limit);
         }
 
         public void Execute(WorkflowDTO workflow)

@@ -10,13 +10,13 @@ namespace WorkflowProcessor.actions
 {
     public class WorkflowActionProcessFactory : IWorkflowActionProcessorFactory
     {
-        private readonly IWorkflowQueries _workflowQueries;
+        private readonly IWorkflowDataService _workflowDataService;
         private readonly IConditionValidatorFactory _conditionValidatorFactory;
         private readonly IExpressionCalculator _expressionCalculator;
 
-        public WorkflowActionProcessFactory(IWorkflowQueries workflowQueries, IConditionValidatorFactory conditionValidatorFactory, IExpressionCalculator expressionCalculator)
+        public WorkflowActionProcessFactory(IWorkflowDataService workflowDataService, IConditionValidatorFactory conditionValidatorFactory, IExpressionCalculator expressionCalculator)
         {
-            _workflowQueries = workflowQueries;
+            _workflowDataService = workflowDataService;
             _conditionValidatorFactory = conditionValidatorFactory;
             _expressionCalculator = expressionCalculator;
         }
@@ -26,7 +26,7 @@ namespace WorkflowProcessor.actions
             switch (actionType)
             {
                 case WorkflowConstants.Actions.Condition:
-                    return new ConditionalActionProcessor(_workflowQueries, _conditionValidatorFactory, _expressionCalculator);
+                    return new ConditionalActionProcessor(_workflowDataService, _conditionValidatorFactory, _expressionCalculator);
                 case WorkflowConstants.Actions.Timer:
                     return new TimerActionProcessor();
                 default:
